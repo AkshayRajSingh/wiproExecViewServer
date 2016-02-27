@@ -2,9 +2,27 @@ import {Router} from 'express';
 
 const index = Router();
 
-/* GET home page. */
-index.get('/', function(req, res, next) {
-  res.render('index', { title: 'Visual Studio Code!' });
+class Car{
+  //engine:string;//var dec
+  constructor(public engine:string){
+    this.engine = engine;
+  }
+  
+  start(){
+    return 'Engine Started '+ this.engine;
+  }
+  
+  
+}
+
+index.get('/', function(req, res){
+  //res.render('index', { title: 'index'});
+  //document.title ="Sajal";
+  console.log("check");
+  
+  var car= new Car("V8");
+  //car.start();
+  res.send(car.start());
 });
 
 /* GET Quick Start. */

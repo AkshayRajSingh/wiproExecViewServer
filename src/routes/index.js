@@ -1,8 +1,23 @@
 var express_1 = require('express');
 var index = express_1.Router();
-/* GET home page. */
-index.get('/', function (req, res, next) {
-    res.render('index', { title: 'Visual Studio Code!' });
+var Car = (function () {
+    //engine:string;//var dec
+    function Car(engine) {
+        this.engine = engine;
+        this.engine = engine;
+    }
+    Car.prototype.start = function () {
+        return 'Engine Started ' + this.engine;
+    };
+    return Car;
+})();
+index.get('/', function (req, res) {
+    //res.render('index', { title: 'index'});
+    //document.title ="Sajal";
+    console.log("check");
+    var car = new Car("V8");
+    //car.start();
+    res.send(car.start());
 });
 /* GET Quick Start. */
 index.get('/quickstart', function (req, res, next) {
