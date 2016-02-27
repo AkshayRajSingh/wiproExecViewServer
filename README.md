@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # README
 ## This the readme for your application "node-express-typescript" 
 -------------------
@@ -15,6 +16,10 @@
 ** Enjoy!**
 
 Edited on 1:03pm
+=======
+# wiproExecViewServer
+
+>>>>>>> d64c60bc8bd18c7a0edabeaa2d6746a01cd538ce
 =======
 # wiproExecViewServer
 
