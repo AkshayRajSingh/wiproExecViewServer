@@ -14,17 +14,15 @@ var docDbClient = new DocumentDBClient(configObj.host, {
 
 var dbHelperQueryObj = new dbHelperQuery(docDbClient, configObj.databaseId, configObj.collectionId);
 
-dbHelperQueryObj.init(function (err, items) {
-    debugger;
+dbHelperQueryObj.executeQuery(function (err, items) {
             if (err) {
                 throw (err);
             }
             else{
                 var query = {
-                    //SELECT * FROM root r where r.type="master" and r.uid='49aaf588-25b3-47a1-ba68-d9af38f37e2e'
                     query: 'SELECT * FROM root r where r.type=@type and r.uid=@uid',
                     parameters: [{
-                        name: '@completed',
+                        name: '@type',
                         value: 'master'
                     },
                     {
@@ -38,7 +36,10 @@ dbHelperQueryObj.init(function (err, items) {
                 dbHelperQueryObj.find(query, function (err, items) {
                             if (err) {
                                 throw (err);
-                            }    
+                            }
+                            debugger;
+                            var screenslst = items[0].screens;  
+                            console.log(screenslst[0]);     
                 });    
 
             }

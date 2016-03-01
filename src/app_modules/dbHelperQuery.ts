@@ -1,21 +1,23 @@
 import dbHelperBase from './dbHelperBase';
 
 class dbHelperQuery extends dbHelperBase{
-    init (callback) {
+    executeQuery (callback) {
         var self = this;
 
-        this.getOrCreateDatabase(self.client, self.databaseId, function (err, db) {
+        this.getOrCreateDatabase(self.client, self.databaseId,  (err, db)=> {
+            var me = self;
             if (err) {
-                callback(err);
+                callback(err,null);
 
             } else {
                 self.database = db;
-                this.getOrCreateCollection(self.client, self.database._self, self.collectionId, function (err, coll) {
+                me.getOrCreateCollection(self.client, self.database._self, self.collectionId,  (err, coll) => {
                     if (err) {
-                        callback(err);
+                        callback(err,null);
 
                     } else {
                         self.collection = coll;
+                        callback(err,coll);
                     }
                 });
             }

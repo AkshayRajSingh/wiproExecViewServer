@@ -9,20 +9,22 @@ var dbHelperQuery = (function (_super) {
     function dbHelperQuery() {
         _super.apply(this, arguments);
     }
-    dbHelperQuery.prototype.init = function (callback) {
+    dbHelperQuery.prototype.executeQuery = function (callback) {
         var self = this;
         this.getOrCreateDatabase(self.client, self.databaseId, function (err, db) {
+            var me = self;
             if (err) {
-                callback(err);
+                callback(err, null);
             }
             else {
                 self.database = db;
-                this.getOrCreateCollection(self.client, self.database._self, self.collectionId, function (err, coll) {
+                me.getOrCreateCollection(self.client, self.database._self, self.collectionId, function (err, coll) {
                     if (err) {
-                        callback(err);
+                        callback(err, null);
                     }
                     else {
                         self.collection = coll;
+                        callback(err, coll);
                     }
                 });
             }
