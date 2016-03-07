@@ -52,7 +52,7 @@ var dbHelperQuery = (function (_super) {
                 callback(err);
             }
             else {
-                callback(null, doc);
+                callback(doc);
             }
         });
     };

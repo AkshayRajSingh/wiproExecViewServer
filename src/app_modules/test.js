@@ -32,6 +32,9 @@ dbHelperQueryObj.executeQuery(function (err, items) {
             var screenslst = items[0].screens;
             console.log(screenslst[0]);
         });
+        dbHelperQueryObj.addItem({ "test": 5 }, function (item) {
+            debugger;
+        });
     }
 });
 var Person = (function () {

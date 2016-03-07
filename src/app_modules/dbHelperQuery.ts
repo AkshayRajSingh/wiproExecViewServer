@@ -48,7 +48,7 @@ class dbHelperQuery extends dbHelperBase{
                 callback(err);
 
             } else {
-                callback(null, doc);
+                callback(doc);
             }
         });
     };

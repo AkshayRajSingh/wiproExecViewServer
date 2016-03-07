@@ -39,7 +39,11 @@ dbHelperQueryObj.executeQuery( (err, items)=> {
                             debugger;
                             var screenslst = items[0].screens;  
                             console.log(screenslst[0]);     
-                });    
+                });
+                
+                dbHelperQueryObj.addItem({"test":5}, (item)=>{
+                    debugger;
+                })    
 
             }
 });
