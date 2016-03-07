@@ -2,46 +2,54 @@
 var DocumentDBClient = require("documentdb").DocumentClient;
 var config_1 = require('../config');
 var dbHelperQuery_1 = require('./dbHelperQuery');
-var configObj = new config_1.default();
-var docDbClient = new DocumentDBClient(configObj.host, {
-    masterKey: configObj.authKey
-});
-var dbHelperQueryObj = new dbHelperQuery_1.default(docDbClient, configObj.databaseId, configObj.collectionId);
-dbHelperQueryObj.executeQuery(function (err, items) {
-    if (err) {
-        throw (err);
+var test = (function () {
+    function test() {
+        this.configObj = new config_1.default();
+        this.docDbClient = new DocumentDBClient(this.configObj.host, {
+            masterKey: this.configObj.authKey
+        });
+        this.dbHelperQueryObj = new dbHelperQuery_1.default(this.docDbClient, this.configObj.databaseId, this.configObj.collectionId);
     }
-    else {
-        var query = {
-            query: 'SELECT * FROM root r where r.type=@type and r.uid=@uid',
-            parameters: [{
-                    name: '@type',
-                    value: 'master'
-                },
-                {
-                    name: '@uid',
-                    value: '49aaf588-25b3-47a1-ba68-d9af38f37e2e'
-                }
-            ]
-        };
-        dbHelperQueryObj.find(query, function (err, items) {
+    test.prototype.executeQuery = function () {
+        var _this = this;
+        this.dbHelperQueryObj.executeQuery(function (err, items) {
             if (err) {
                 throw (err);
             }
-            debugger;
-            var screenslst = items[0].screens;
-            console.log(screenslst[0]);
+            else {
+                var query = {
+                    query: 'SELECT * FROM root r where r.type=@type and r.uid=@uid',
+                    parameters: [{
+                            name: '@type',
+                            value: 'master'
+                        },
+                        {
+                            name: '@uid',
+                            value: '49aaf588-25b3-47a1-ba68-d9af38f37e2e'
+                        }
+                    ]
+                };
+                _this.dbHelperQueryObj.find(query, function (err, items) {
+                    if (err) {
+                        throw (err);
+                    }
+                    debugger;
+                    var screenslst = items[0].screens;
+                    console.log(screenslst[0]);
+                });
+                _this.dbHelperQueryObj.addItem({ "test": 5 }, function (item) {
+                    debugger;
+                });
+            }
         });
-        dbHelperQueryObj.addItem({ "test": 5 }, function (item) {
-            debugger;
-        });
-    }
-});
+    };
+    return test;
+})();
 var Person = (function () {
     function Person() {
     }
     return Person;
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Person;
+exports.default = test;
 //# sourceMappingURL=test.js.map

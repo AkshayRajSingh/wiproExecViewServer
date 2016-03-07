@@ -1,6 +1,6 @@
 
 import {Router} from 'express';
-import Person from '../app_modules/test';
+import test from '../app_modules/test';
 
 const sandbox = Router();
 //////////////////////////////////////////
@@ -8,14 +8,6 @@ const sandbox = Router();
 //Rest Parameter
 
 
-class PersonList{
-  
-  addPersons(...persons:Person[]){
-   console.log(persons.length);
-  
-  }
-  
-}
 
 
 
@@ -23,18 +15,10 @@ class PersonList{
 
 sandbox.get('/', function(req, res, next) {
  // 
-var personLst = new PersonList();
-var p = new Person();
-p.name ='abc';
-p.age = 25;
-
-var p1 = new Person();
-p1.name ='abc';
-p1.age = 25;
-personLst.addPersons(p,p1);
-res.send(personLst[0].toString());
+var t = new test();
+//t.executeQuery();
 //res.render('sandbox', { title: 'sandbox'});
-
+res.send(JSON.stringify({ a: 1 }));
 });
 
 
