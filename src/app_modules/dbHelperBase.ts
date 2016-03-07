@@ -27,7 +27,7 @@ class dbHelperBase {
             }]
         };
 
-    client.queryDatabases(querySpec).toArray(function(err, results) {
+    client.queryDatabases(querySpec).toArray((err, results) =>{
             if (err) {
                 callback(err);
 
@@ -37,7 +37,7 @@ class dbHelperBase {
                         id: databaseId
                     };
 
-                    client.createDatabase(databaseSpec, function(err, created) {
+                    client.createDatabase(databaseSpec, (err, created)=> {
                         callback(null, created);
                     });
 
@@ -57,7 +57,7 @@ class dbHelperBase {
             }]
         };
 
-        client.queryCollections(databaseLink, querySpec).toArray(function(err, results) {
+        client.queryCollections(databaseLink, querySpec).toArray((err, results)=> {
             if (err) {
                 callback(err);
 

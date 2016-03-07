@@ -27,7 +27,7 @@ class dbHelperQuery extends dbHelperBase{
     find (querySpec, callback) {
         var self = this;
 
-        self.client.queryDocuments(self.collection._self, querySpec).toArray(function (err, results) {
+        self.client.queryDocuments(self.collection._self, querySpec).toArray( (err, results)=> {
             if (err) {
                 callback(err);
 
@@ -43,7 +43,7 @@ class dbHelperQuery extends dbHelperBase{
         item.date = Date.now();
         item.completed = false;
 
-        self.client.createDocument(self.collection._self, item, function (err, doc) {
+        self.client.createDocument(self.collection._self, item, (err, doc)=> {
             if (err) {
                 callback(err);
 
@@ -56,14 +56,14 @@ class dbHelperQuery extends dbHelperBase{
     updateItem (itemId, callback) {
         var self = this;
 
-        self.getItem(itemId, function (err, doc) {
+        self.getItem(itemId, (err, doc)=> {
             if (err) {
                 callback(err);
 
             } else {
                 doc.completed = true;
 
-                self.client.replaceDocument(doc._self, doc, function (err, replaced) {
+                self.client.replaceDocument(doc._self, doc,  (err, replaced)=> {
                     if (err) {
                         callback(err);
 
@@ -86,7 +86,7 @@ class dbHelperQuery extends dbHelperBase{
             }]
         };
 
-        self.client.queryDocuments(self.collection._self, querySpec).toArray(function (err, results) {
+        self.client.queryDocuments(self.collection._self, querySpec).toArray( (err, results)=> {
             if (err) {
                 callback(err);
 
