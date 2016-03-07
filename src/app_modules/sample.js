@@ -2,15 +2,15 @@
 var DocumentDBClient = require("documentdb").DocumentClient;
 var config_1 = require('../config');
 var dbHelperQuery_1 = require('./dbHelperQuery');
-var test = (function () {
-    function test() {
+var sample = (function () {
+    function sample() {
         this.configObj = new config_1.default();
         this.docDbClient = new DocumentDBClient(this.configObj.host, {
             masterKey: this.configObj.authKey
         });
         this.dbHelperQueryObj = new dbHelperQuery_1.default(this.docDbClient, this.configObj.databaseId, this.configObj.collectionId);
     }
-    test.prototype.executeQuery = function () {
+    sample.prototype.executeQuery = function () {
         var _this = this;
         this.dbHelperQueryObj.executeQuery(function (err, items) {
             if (err) {
@@ -43,7 +43,7 @@ var test = (function () {
             }
         });
     };
-    return test;
+    return sample;
 })();
 var Person = (function () {
     function Person() {
@@ -51,5 +51,5 @@ var Person = (function () {
     return Person;
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = test;
-//# sourceMappingURL=test.js.map
+exports.default = sample;
+//# sourceMappingURL=sample.js.map

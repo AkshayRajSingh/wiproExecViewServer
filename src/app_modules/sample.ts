@@ -5,7 +5,7 @@ import config from '../config';
 import dbHelperBase from './dbHelperBase';
 import dbHelperQuery from './dbHelperQuery';
 
-class test {
+class sample {
 
     configObj;
     docDbClient;
@@ -72,4 +72,4 @@ class Person {
 }
 
 
-export default test;
+export default sample;

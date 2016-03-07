@@ -1,6 +1,6 @@
 
 import {Router} from 'express';
-import test from '../app_modules/test';
+import sample from '../app_modules/sample';
 
 const sandbox = Router();
 //////////////////////////////////////////
@@ -15,8 +15,8 @@ const sandbox = Router();
 
 sandbox.get('/', function(req, res, next) {
  // 
-var t = new test();
-//t.executeQuery();
+var t = new sample();
+t.executeQuery();
 //res.render('sandbox', { title: 'sandbox'});
 res.send(JSON.stringify({ a: 1 }));
 });
